@@ -51,8 +51,10 @@ client.on("interactionCreate", async (interaction) => {
         }
     } else if (interaction.isModalSubmit()) {
         const { fields } = interaction;
-        const issueTitle = fields.getField("issueTitle").value;
-        const issueDescription = fields.getField("issueDescription").value;
+        console.log('fields: %o', fields);
+        console.log('fields.getField: %o', fields.getField('issueTitle'));
+        const issueTitle = fields.getTextInputValue("issueTitle");
+        const issueDescription = fields.getTextInputValue("issueDescription");
         const octokit = new Octokit({
             auth: process.env.GITHUB_ACCESS_TOKEN,
             baseUrl: "https://api.github.com",
